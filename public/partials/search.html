@@ -133,7 +133,7 @@
 
 
 	                    var allCourses = [];
-	                    for (index=0; index<courseID.length;++index)
+	                    for (index = 0; index < courseID.length; index++)
 	                    {
 	                        var subject = courseSubject[index];
 	                        var number = courseID[index];
@@ -144,46 +144,51 @@
 
 	                        var urlString = 'http://api.asg.northwestern.edu/courses/?key=qrEZc4xKeF4KCBj2&term=4570&subject='+subject+'&catalog_num='+number;
 	   	                        
-
-	                         $.ajax({
+	                        var counter = 0;
+	                        $.ajax({
 							    url: urlString,
 							    type: 'get',
 							    success: function(rsp) {
 							        
 			                        if(rsp !== [])
 			                        {
-			                        	for (i = 0; i < rsp.length; ++i)
+			                        	for (i = 0; i < rsp.length; i++)
 	                    				{
 	                    					allCourses.push(rsp[i]);
 
 	                    				}
 			                        }
-			                        printAll();
+
+			                        if(counter == (courseID.length - 1))
+			                        {
+			                        	extractData();
+			                        }
+			                        counter++;
 							    }
 							});
 	                        
 	                    }
 	                    
-	                    function printAll()
+	                    function extractData()
 	                    {
 	                    	console.log(allCourses);
-	                    }
-	                    
-	                    /*
-	                    for (var dic in list)
-	                    {
-	                        var id = dic['id'];
-	                        var title = dic['title'];
-	                        var instructor = dic['instructor'];
-	                        var subject = dic['subject'];
-	                        var room = dic['room'];
-	                        var meeting_days = dic['meeting_days'];
-	                        var start_time = dic['start_time'];
-	                        var end_time = dic['end_time'];
-	                        console.log(id+" "+title+" "+instructor+" "+subject+" "+room+" "+meeting_days+" "+start_time+" "+end_time)
+	                  		allCourses.forEach(function(dic)
+	                  		{
+		                    	console.log(dic);
+		                        var ids = dic.id;
+		                        var courseNum = dic.catalog_num;
+		                        var starttime = dic.start_time;
+		                        var endtime = dic.end_time;
+		                        var titles = dic.title;
+		                        var instructors= dic.instructor;
+		                        var roomnum = dic.room;
+		                        var subjects = dic.subject;
+		                        var seatsavailable = dic.seats;
+		                        var meetingdays = dic.meeting_days;
+		                        console.log(endtime);
+	                  		});
 
-	                    }
-	                    */
+	                	}
                 	}
 
                 });
