@@ -1,0 +1,85 @@
+<html lang="en">
+    <head>
+        <title>DistroFinder</title> 
+
+        <link rel="stylesheet" type="text/css" href="css/MemoryTextStyle.css">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ruluko">
+    
+    </head>
+    <body class="gradBG">
+
+        <script type="text/javascript">
+            $(function() {
+                $("#loginButton").click(function() {
+                    console.log("Login Button Clicked");
+                
+                    var params = {
+                      key: "qrEZc4xKeF4KCBj2"
+                    };
+
+                    $.getJSON('http://api.asg.northwestern.edu/terms/', params, function(data) {
+                      // data is the JavaScript array that results from parsing the response
+                      console.log(data);
+                    });
+
+                    $("#logoutButton").show();
+                    $("#getStarted").show();
+                });
+            });
+        </script>
+
+        <script type="text/javascript">
+            /*
+            var ref = new Firebase("https://memorytext.firebaseio.com");
+            ref.onAuth(function(authData) {
+              if (authData) {
+                // user authenticated with Firebase
+                console.log("User ID: " + authData.uid + ", Provider: " + authData.provider);
+              } else {
+                // user is logged out
+                console.log("not logged in");
+              }
+            });
+            */
+        </script>
+
+        <script type="text/javascript">
+            // we would probably save a profile when we register new users on our site
+            // we could also read the profile to see if it's null
+            // here we will just simulate this with an isNewUser boolean
+            var isNewUser = true;
+            /*
+            var ref = new Firebase("https://memorytext.firebaseio.com");
+            ref.onAuth(function(authData) {
+              if (authData && isNewUser) {
+                // save the user's profile into Firebase so we can list users,
+                // use them in Security and Firebase Rules, and show profiles
+                ref.child('users').child(authData.uid).set(authData);
+              }
+            });
+            */
+        </script>
+
+        <div class="title">
+            <p class="title">DistroFinder</p>
+        </div>
+
+        <div id="motto">
+            <p>Find an easy Distro Today!</p>
+        </div>
+
+        <div id="loginButton" class="centerLogin">
+            <a id="alink" href="#"><p class="button">Find Courses</p></a>
+        </div>
+
+        <!--div id="logoutButton" class="cornerLogout">
+            <a id="alink" href="#"><p class="button">Logout</p></a>
+        </div>
+
+        <div id="getStarted" class="centerStart">
+            <a id="alink" href="#"><p class="button">Get Started With Memory Text!</p></a>
+        </div-->
+
+    </body>
+</html>
