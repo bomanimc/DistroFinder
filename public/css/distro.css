@@ -170,3 +170,8 @@
   	background: linear-gradient(#00ACEE, #FFFFFF)); /* Standard syntax */
 }
 
+#myTable
+{
+  font-size: 10px;
+}
+

@@ -14,12 +14,17 @@ distroModule.config(function($routeProvider){
 distroModule.directive('searchControl', function() {
 	return {
 		link: function() {
-
-			$('#myTable').dataTable();
+			$('#myTable').hide();
+			$('#myTable').dataTable({
+				"paging":   false,
+				"searching": false,
+				"info": false
+			});
 
 			$("#submitButton").click(function() {
 
 				console.log("clicked");
+				
 
 				var distro = document.getElementById("distroIn").value;
 				var fileN = distro+".txt";
@@ -69,7 +74,7 @@ distroModule.directive('searchControl', function() {
 	                        var numString = String(number);
 	                        if (numString.indexOf("-")==-1)     //EDITED THIS PART
 	                        	 number = numString + "-0"
-	                        console.log(String(number));
+	                        //console.log(String(number));
 	                        /**
 	                         * HOW TO Make an HTTP Call - GET
 	                         */
@@ -87,6 +92,7 @@ distroModule.directive('searchControl', function() {
 	                         			for (i = 0; i < rsp.length; i++)
 	                         			{
 	                         				allCourses.push(rsp[i]);
+	                         				console.log(rsp[i]);
 
 	                         			}
 	                         		}
@@ -185,6 +191,8 @@ distroModule.directive('searchControl', function() {
 		  						body.appendChild(tbl);
 		  // sets the border attribute of tbl to 2;
 		 						 tbl.setAttribute("border", "5");
+		 						 console.log(totalDataList);
+		 						 $('#myTable').show();
   						$('#example').DataTable( {
 						    data: totalDataList
 						} );
